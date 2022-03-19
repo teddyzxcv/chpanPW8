@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// Point 6
 class PagingViewController : UIViewController{
     
     private let tableView = UITableView()
