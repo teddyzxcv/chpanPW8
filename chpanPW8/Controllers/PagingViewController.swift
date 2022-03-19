@@ -40,7 +40,6 @@ class PagingViewController : UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         view.backgroundColor = .white
         configUI()
-        self.window?.rootViewController?. = true
     }
     
     private func configUI(){
