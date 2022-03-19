@@ -18,7 +18,9 @@ class TabBarController: UITabBarController {
     private func setUpViewControllers(){
         viewControllers = [
             createNavigController(for: MoviesViewController(), title: "Movies", image: UIImage(named: "Movie")!),
-            createNavigController(for: SearchViewController(), title: "Search", image: UIImage(named: "Search")!)
+            createNavigController(for: SearchViewController(), title: "Search", image: UIImage(named: "Search")!),
+            createNavigController(for: PagingViewController(), title: "Pages", image: UIImage(named: "Page")!),
+            createNavigController(for: ScrollViewController(), title: "Scroll", image: UIImage(named: "Scroll")!)
         ]
     }
     

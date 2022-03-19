@@ -19,6 +19,8 @@
 		6D38C4A927E60BD800809373 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38C4A827E60BD800809373 /* Movie.swift */; };
 		6D38C4AB27E6278D00809373 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38C4AA27E6278D00809373 /* TabBarController.swift */; };
 		6D38C4AD27E6299800809373 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38C4AC27E6299800809373 /* SearchViewController.swift */; };
+		6D38C4AF27E63E7900809373 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38C4AE27E63E7900809373 /* PagingViewController.swift */; };
+		6D38C4B127E645E200809373 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38C4B027E645E200809373 /* ScrollViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		6D38C4A827E60BD800809373 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		6D38C4AA27E6278D00809373 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6D38C4AC27E6299800809373 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		6D38C4AE27E63E7900809373 /* PagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
+		6D38C4B027E645E200809373 /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 				6D38C47727E6053700809373 /* MoviesViewController.swift */,
 				6D38C4AA27E6278D00809373 /* TabBarController.swift */,
 				6D38C4AC27E6299800809373 /* SearchViewController.swift */,
+				6D38C4AE27E63E7900809373 /* PagingViewController.swift */,
+				6D38C4B027E645E200809373 /* ScrollViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,7 +282,9 @@
 			files = (
 				6D38C47827E6053700809373 /* MoviesViewController.swift in Sources */,
 				6D38C4AD27E6299800809373 /* SearchViewController.swift in Sources */,
+				6D38C4AF27E63E7900809373 /* PagingViewController.swift in Sources */,
 				6D38C47427E6053700809373 /* AppDelegate.swift in Sources */,
+				6D38C4B127E645E200809373 /* ScrollViewController.swift in Sources */,
 				6D38C4A727E606B400809373 /* MovieCell.swift in Sources */,
 				6D38C4AB27E6278D00809373 /* TabBarController.swift in Sources */,
 				6D38C47627E6053700809373 /* SceneDelegate.swift in Sources */,
