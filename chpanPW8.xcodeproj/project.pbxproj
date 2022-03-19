@@ -21,6 +21,8 @@
 		6D38C4AD27E6299800809373 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38C4AC27E6299800809373 /* SearchViewController.swift */; };
 		6D38C4AF27E63E7900809373 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38C4AE27E63E7900809373 /* PagingViewController.swift */; };
 		6D38C4B127E645E200809373 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38C4B027E645E200809373 /* ScrollViewController.swift */; };
+		6D38C4B327E64F6700809373 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38C4B227E64F6700809373 /* WebViewController.swift */; };
+		6D38C4B527E64FA500809373 /* UIViewPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38C4B427E64FA500809373 /* UIViewPin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		6D38C4AC27E6299800809373 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6D38C4AE27E63E7900809373 /* PagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
 		6D38C4B027E645E200809373 /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
+		6D38C4B227E64F6700809373 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		6D38C4B427E64FA500809373 /* UIViewPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 				6D38C48127E6053B00809373 /* Info.plist */,
 				6D38C4A627E606B400809373 /* MovieCell.swift */,
 				6D38C4A827E60BD800809373 /* Movie.swift */,
+				6D38C4B427E64FA500809373 /* UIViewPin.swift */,
 			);
 			path = chpanPW8;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				6D38C4AC27E6299800809373 /* SearchViewController.swift */,
 				6D38C4AE27E63E7900809373 /* PagingViewController.swift */,
 				6D38C4B027E645E200809373 /* ScrollViewController.swift */,
+				6D38C4B227E64F6700809373 /* WebViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -280,9 +286,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D38C4B527E64FA500809373 /* UIViewPin.swift in Sources */,
 				6D38C47827E6053700809373 /* MoviesViewController.swift in Sources */,
 				6D38C4AD27E6299800809373 /* SearchViewController.swift in Sources */,
 				6D38C4AF27E63E7900809373 /* PagingViewController.swift in Sources */,
+				6D38C4B327E64F6700809373 /* WebViewController.swift in Sources */,
 				6D38C47427E6053700809373 /* AppDelegate.swift in Sources */,
 				6D38C4B127E645E200809373 /* ScrollViewController.swift in Sources */,
 				6D38C4A727E606B400809373 /* MovieCell.swift in Sources */,

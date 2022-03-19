@@ -8,7 +8,8 @@
 import UIKit
 
 class MoviesViewController: UIViewController {
-    
+    var window: UIWindow?
+        
     private let tableView = UITableView()
     
     private var movies = [Movie]()
@@ -30,6 +31,7 @@ class MoviesViewController: UIViewController {
     private func configUI(){
         view.addSubview(tableView)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -57,6 +59,10 @@ class MoviesViewController: UIViewController {
         
     }
     
+    private func loadHomePage(id: Int) -> String {
+        return "https://www.themoviedb.org/movie/\(id)"
+    }
+    
     private func loadMovies(){
         guard let url = URL(string:"https://api.themoviedb.org/3/discover/movie?api_key=\(apiKey)&language=ru-RU") else {return assertionFailure()}
         let session = URLSession.shared.dataTask(with: URLRequest(url: url), completionHandler: {data, _, _ in
@@ -68,9 +74,12 @@ class MoviesViewController: UIViewController {
             let movies: [Movie] = results.map { params in
                 let title = params["title"] as! String
                 let imagePath = params["poster_path"] as? String
+                let id = params["id"] as? Int
+                let backdropPath = self.loadHomePage(id: id!)
                 return Movie(
                     title: title,
-                    posterPath: imagePath
+                    posterPath: imagePath,
+                    backdropPath: backdropPath
                 )
             }
             self.loadImagesForMovies(movies) { movies in
@@ -94,6 +103,25 @@ extension MoviesViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.identifier, for: indexPath) as! MovieCell
         cell.configure(movie: movies[indexPath.row])
         return cell
+    }
+    
+    
+}
+
+extension MoviesViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(movies[indexPath.row].backdropPath!)
+        if let url = URL(string: movies[indexPath.row].backdropPath!) {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let nav1 = UINavigationController()
+            let vc = WebViewController()
+            vc.url = url
+            nav1.viewControllers = [vc]
+            self.window!.rootViewController = nav1
+            self.window?.makeKeyAndVisible()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 

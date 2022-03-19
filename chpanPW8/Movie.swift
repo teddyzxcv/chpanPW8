@@ -12,6 +12,13 @@ class Movie {
     let title: String
     let posterPath: String?
     var poster: UIImage? = nil
+    var backdropPath: String?
+    init(title: String, posterPath: String?, backdropPath: String?) {
+        self.title = title
+        self.posterPath = posterPath
+        self.backdropPath = backdropPath
+    }
+    
     init(title: String, posterPath: String?) {
         self.title = title
         self.posterPath = posterPath

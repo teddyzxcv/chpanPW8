@@ -11,6 +11,8 @@ import UIKit
 // Point 6
 class PagingViewController : UIViewController{
     
+    var window : UIWindow?
+    
     private let tableView = UITableView()
     
     private let pickerView = UIPickerView()
@@ -35,11 +37,18 @@ class PagingViewController : UIViewController{
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        view.backgroundColor = .white
+        configUI()
+        self.window?.rootViewController?. = true
+    }
+    
     private func configUI(){
         view.addSubview(tableView)
         navigationItem.titleView = pickerView
         let rotationAngle: CGFloat! = -90  * (.pi/180)
         pickerView.transform = CGAffineTransform(rotationAngle: rotationAngle)
+        tableView.delegate = self
         pickerView.frame = CGRect(x: -150, y: 100.0, width: view.bounds.width + 300, height: 200)
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -71,6 +80,10 @@ class PagingViewController : UIViewController{
         
     }
     
+    private func loadHomePage(id: Int) -> String {
+        return "https://www.themoviedb.org/movie/\(id)"
+    }
+    
     private func loadMovies(page: Int){
         if (session != nil) {
             session!.cancel()
@@ -85,9 +98,12 @@ class PagingViewController : UIViewController{
             let movies: [Movie] = results.map { params in
                 let title = params["title"] as! String
                 let imagePath = params["poster_path"] as? String
+                let id = params["id"] as? Int
+                let backdropPath = self.loadHomePage(id: id!)
                 return Movie(
                     title: title,
-                    posterPath: imagePath
+                    posterPath: imagePath,
+                    backdropPath: backdropPath
                 )
             }
             self.loadImagesForMovies(movies) { movies in
@@ -147,4 +163,21 @@ extension PagingViewController: UIPickerViewDataSource {
     }
     
     
+}
+
+extension PagingViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(movies[indexPath.row].backdropPath!)
+        if let url = URL(string: movies[indexPath.row].backdropPath!) {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let nav1 = UINavigationController()
+            let vc = WebViewController()
+            vc.url = url
+            nav1.viewControllers = [vc]
+            self.window!.rootViewController = nav1
+            self.window?.makeKeyAndVisible()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
