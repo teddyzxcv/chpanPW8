@@ -6,19 +6,9 @@
 //
 
 import Foundation
-
-//
-//  ViewController.swift
-//  chpanPW8
-//
-//  Created by ZhengWu Pan on 19.03.2022.
-//
-
 import UIKit
 
-class ScrollViewController: UIViewController {
-    var window: UIWindow?
-    
+class ScrollViewController: UIViewController {    
     private let tableView = UITableView()
     
     private var pageCount = 0
@@ -36,7 +26,7 @@ class ScrollViewController: UIViewController {
         DispatchQueue.global(qos: .background).async { [weak self] in
             self?.loadMovies(page: 1)
         }
-        tableView.rowHeight = 240
+        tableView.rowHeight = CGFloat(MovieCell.imageHeight) + 40
         
         // Do any additional setup after loading the view.
     }
@@ -109,8 +99,6 @@ class ScrollViewController: UIViewController {
         })
         session!.resume()
     }
-    
-    
 }
 
 extension ScrollViewController : UITableViewDataSource {
@@ -128,7 +116,8 @@ extension ScrollViewController : UITableViewDataSource {
 extension ScrollViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         let index = indexPaths[0]
-        let page = (index.row + 1) / 20
+        // When scroll to 16th of current page, load next page
+        let page = (index.row + 5) / 20
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
             if (self.pageCount < page + 1) {
                 self.loadMovies(page: page + 1)
@@ -140,16 +129,11 @@ extension ScrollViewController: UITableViewDataSourcePrefetching {
 extension ScrollViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(movies[indexPath.row].backdropPath!)
         if let url = URL(string: movies[indexPath.row].backdropPath!) {
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            let nav1 = UINavigationController()
             let vc = WebViewController()
             vc.url = url
-            nav1.viewControllers = [vc]
-            self.window!.rootViewController = nav1
-            self.window?.makeKeyAndVisible()
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.modalPresentationStyle = .fullScreen
+            navigationController!.pushViewController(vc, animated: true)
         }
     }
 }

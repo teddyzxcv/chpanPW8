@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class MovieCell: UITableViewCell {
+    
+    static let imageHeight = 600
     static let identifier = "MovieCell"
     private let poster = UIImageView()
     private let title = UILabel()
@@ -36,7 +38,7 @@ class MovieCell: UITableViewCell {
             poster.topAnchor.constraint(equalTo: topAnchor),
             poster.leadingAnchor.constraint(equalTo: leadingAnchor),
             poster.trailingAnchor.constraint(equalTo: trailingAnchor),
-            poster.heightAnchor.constraint(equalToConstant:200),
+            poster.heightAnchor.constraint(equalToConstant:CGFloat(Self.imageHeight)),
             title.topAnchor.constraint(equalTo: poster.bottomAnchor, constant: 10),
             title.leadingAnchor.constraint(equalTo: leadingAnchor),
             title.trailingAnchor.constraint(equalTo: trailingAnchor),

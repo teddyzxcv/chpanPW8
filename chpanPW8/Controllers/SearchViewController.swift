@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 class SearchViewController: UIViewController {
-    
-    var window: UIWindow?
-    
+        
     private let tableView = UITableView()
     
     private var movies = [Movie]()
@@ -27,7 +25,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configUI()
-        tableView.rowHeight = 240
+        tableView.rowHeight = CGFloat(CGFloat(MovieCell.imageHeight) + 40)
         
         // Do any additional setup after loading the view.
     }
@@ -127,16 +125,11 @@ extension SearchViewController : UISearchBarDelegate {
 extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(movies[indexPath.row].backdropPath!)
         if let url = URL(string: movies[indexPath.row].backdropPath!) {
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            let nav1 = UINavigationController()
             let vc = WebViewController()
             vc.url = url
-            nav1.viewControllers = [vc]
-            self.window!.rootViewController = nav1
-            self.window?.makeKeyAndVisible()
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.modalPresentationStyle = .fullScreen
+            navigationController!.pushViewController(vc, animated: true)
         }
     }
 }

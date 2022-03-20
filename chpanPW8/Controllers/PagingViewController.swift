@@ -11,9 +11,9 @@ import UIKit
 // Point 6
 class PagingViewController : UIViewController{
     
-    var window : UIWindow?
-    
     private let tableView = UITableView()
+    
+    private let activityIndicator = UIActivityIndicatorView(style: .large)
     
     private let pickerView = UIPickerView()
     
@@ -28,11 +28,16 @@ class PagingViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+
         configUI()
+        navigationItem.titleView!.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: (navigationItem.titleView!.centerXAnchor)).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: (navigationItem.titleView!.centerYAnchor)).isActive = true
         DispatchQueue.global(qos: .background).async { [weak self] in
             self?.loadMovies(page: 1)
         }
-        tableView.rowHeight = 240
+        tableView.rowHeight = CGFloat(MovieCell.imageHeight) + 40
         
         // Do any additional setup after loading the view.
     }
@@ -84,6 +89,9 @@ class PagingViewController : UIViewController{
     }
     
     private func loadMovies(page: Int){
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
         if (session != nil) {
             session!.cancel()
         }
@@ -109,6 +117,7 @@ class PagingViewController : UIViewController{
                 self.movies = movies
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
                 }
             }
         })
@@ -152,7 +161,7 @@ extension PagingViewController: UIPickerViewDataSource {
         let modeView = UIView()
         modeView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         let modeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        modeLabel.textColor = .darkGray
+        modeLabel.textColor = .blue
         modeLabel.text = paging[row]
         modeLabel.textAlignment = .center
         modeView.addSubview(modeLabel)
@@ -167,16 +176,11 @@ extension PagingViewController: UIPickerViewDataSource {
 extension PagingViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(movies[indexPath.row].backdropPath!)
         if let url = URL(string: movies[indexPath.row].backdropPath!) {
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            let nav1 = UINavigationController()
             let vc = WebViewController()
             vc.url = url
-            nav1.viewControllers = [vc]
-            self.window!.rootViewController = nav1
-            self.window?.makeKeyAndVisible()
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.modalPresentationStyle = .fullScreen
+            navigationController!.pushViewController(vc, animated: true)
         }
     }
 }

@@ -17,6 +17,7 @@ class WebViewController: UIViewController, WKNavigationDelegate{
     
     override func viewDidLoad() {
         webView.load(URLRequest(url: url!))
+        webView.navigationDelegate = self
         view.addSubview(webView)
         webView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
         webView.pinRight(to: view)
